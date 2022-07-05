@@ -1,7 +1,7 @@
 const {ipcRenderer, contextBridge} = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
-  // // Invoke Methods
+  // Invoke Methods
   // testInvoke: (args) => ipcRenderer.invoke('test-invoke', args),
   // // Send Methods
   // testSend: (args) => ipcRenderer.send('test-send', args),
@@ -9,7 +9,7 @@ contextBridge.exposeInMainWorld('api', {
   // testReceive: (callback) => ipcRenderer.on('test-receive', (event, data) => {
   //   callback(data)
   // }),
-  // saveCredo: (args) =>ipcRenderer.invoke('save-credo', args),
-  // createTable: (args) =>ipcRenderer.invoke('create-table', args),
-  // connectToDB:()=>{ return ipcRenderer.invoke('connect')}
+  saveCredo: (args) =>ipcRenderer.invoke('save-credo', args),
+  createTable: (args) =>ipcRenderer.invoke('create-table', args),
+  connectToDB:()=>{ return ipcRenderer.invoke('connect')}
 });
