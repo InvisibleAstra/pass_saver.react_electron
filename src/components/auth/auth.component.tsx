@@ -1,12 +1,25 @@
 import { Button, TextField } from '@mui/material';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 import './auth.component.scss';
 import { useNavigate } from 'react-router-dom';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const AuthComponent = () => {
+
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [testresponse, setTestResponse] = useState('');
   let nav = useNavigate();
+  let requestConfig: AxiosRequestConfig ={
+    url: 'https://functions.yandexcloud.net/d4eahu6fqabhcbvm394p',
+    method: 'post',
+    data: {login, password},
+  }
+  // let a = useCallback(async ()=>{
+  //   let response = await axios(requestConfig);
+  //   setTestResponse(response.data);
+  // },[]);
+  // a();
 
   let loginOnChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setLogin(event.target.value);
@@ -18,9 +31,14 @@ const AuthComponent = () => {
 
   let LogIn = () => {
     if (login === '1' && password === '1') {
+
       nav('/main');
     }
       };
+
+  let printResponse = () =>{
+    console.log(testresponse);
+  }
 
   return (
     <div className={'auth'}>
@@ -32,6 +50,7 @@ const AuthComponent = () => {
         <Button variant="outlined" size="medium" onClick={LogIn}>
           Log in
         </Button>
+        <Button variant = 'outlined' size='medium' onClick={printResponse}>print response</Button>
       </div>
     </div>
   );
