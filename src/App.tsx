@@ -3,7 +3,8 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthComponent from './components/auth/auth.component';
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
-import BarComponent from "./components/appBar/bar.component";
+import BarComponent from "./components/Main/appBar/bar.component";
+import MainComponent from './components/Main/main.component';
 
 
 const darkTheme = createTheme({
@@ -49,7 +50,7 @@ const [test, setCount] = useState('false')
                 <BrowserRouter>
                     <Routes>
                         <Route path={'/'} element={<AuthComponent/>}/>
-                        <Route path={'/main'} element={<BarComponent/>}/>
+                        <Route path={'/main'} element={<MainComponent/>}/>
                     </Routes>
                 </BrowserRouter>
             </ThemeProvider>
