@@ -1,17 +1,17 @@
-//.main {
-  //display: grid;
-  //grid-template-areas: "appBar header"
-  //                      "appBar contentArea";
-  //width: 100%;
-  //height: 100vh;
-//}
-//.header {
-//  grid-area: header;
-//}
-//.appBar {
-//  //grid-area: appBar;
-//  //width: inherit;
-//}
-//.contentArea {
-//  grid-area: contentArea;
-//}
+.main {
+  display: grid;
+  grid-template-areas: "appBar header"
+                        "appBar contentArea";
+  width: 100%;
+  height: 100vh;
+}
+.header {
+  grid-area: header;
+}
+.appBar {
+  grid-area: appBar;
+  position: fixed;
+}
+.contentArea {
+  grid-area: contentArea;
+}
