@@ -1,6 +1,6 @@
 import React from 'react';
 import BarComponent from './appBar/bar.component';
-import AccauntItemComponent from './contentArea/AccauntItem/accauntItem.component';
+import AccountItemComponent from './contentArea/AccountItem/accountItem.component';
 import ContentAreaComponent from './contentArea/contentArea.component';
 import HeaderComponent from './Header/header.component';
 import './main.component.scss';

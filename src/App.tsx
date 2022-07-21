@@ -32,7 +32,6 @@ const darkTheme = createTheme({
 
 
 function App() {
-const [test, setCount] = useState('false')
     let a = useCallback(async () => {
             // @ts-ignore
             // await window.api.connectToDB();
