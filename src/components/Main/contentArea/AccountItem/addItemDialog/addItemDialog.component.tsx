@@ -31,7 +31,7 @@ const AddItemDialogComponent = (props:AddItemProps) => {
           </Box>
         }</DialogTitle>
         <List>
-          <ListItem> <ItemInfoTextFieldComponent label={'Title'} value={'a'}/> </ListItem>
+          <ListItem> <ItemInfoTextFieldComponent label={'Title'} value={''}/> </ListItem>
           <ListItem> <AddIcon onClick={addFieldHandler}/> </ListItem>
         </List>
       </Dialog>
