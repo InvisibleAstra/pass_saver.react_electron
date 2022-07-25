@@ -1,9 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthComponent from './components/auth/auth.component';
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
-import BarComponent from "./components/Main/appBar/bar.component";
 import MainComponent from './components/Main/main.component';
 
 
@@ -32,23 +31,24 @@ const darkTheme = createTheme({
 
 
 function App() {
-    let a = useCallback(async () => {
-            // @ts-ignore
-            // await window.api.connectToDB();
-
-            // @ts-ignore
-            // await window.api.createTable();
-            // // @ts-ignore
-            // await window.api.saveCredo("{test:test}");
-        }, []
-    )
+    console.log('app');
+    // let a = useCallback(async () => {
+    //         // @ts-ignore
+    //         // await window.api.connectToDB();
+    //
+    //         // @ts-ignore
+    //         // await window.api.createTable();
+    //         // // @ts-ignore
+    //         // await window.api.saveCredo("{test:test}");
+    //     }, []
+   // )
 
     return ( <>
             <ThemeProvider theme={darkTheme}>
                 <CssBaseline/>
                 <BrowserRouter>
                     <Routes>
-                        <Route path={'/'} element={<AuthComponent/>}/>
+                        {/*<Route path={'/'} element={<AuthComponent/>}/>*/}
                         <Route path={'/main'} element={<MainComponent/>}/>
                     </Routes>
                 </BrowserRouter>
