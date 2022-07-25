@@ -2,12 +2,13 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box, Snackbar, TextField } from '@mui/material';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 interface ItemInfoTextFieldComponentProps {
   label: string;
   value: string;
+  readOnly?: boolean;
 }
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -18,11 +19,21 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 const ItemInfoTextFieldComponent = (props: ItemInfoTextFieldComponentProps) => {
 
   const [visibility, setVisibility] = useState(false);
-  const [value, setValue] = useState(props.value);
-  const [readOnly, setReadOnly] = useState(true);
+  let [value, setValue] = useState(props.value);
+  const readAccess = props.readOnly ? true : false;
+  const [readOnly, setReadOnly] = useState(readAccess);
   const [focus, setFocus] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false)
-  let test:any;
+  const [errorEmptyField, setErrorEmptyField] = useState(false);
+
+ useEffect(()=>{
+   if(!value){
+     setErrorEmptyField(true);
+     setReadOnly(false);
+   }
+ },[value]);
+
+  let refForFocusField:any;
   let visibilityHandler = () => {
     setVisibility(!visibility);
   };
@@ -32,7 +43,9 @@ const ItemInfoTextFieldComponent = (props: ItemInfoTextFieldComponentProps) => {
   };
 
   let blurHandler = () => {
-    setReadOnly(true);
+    if(!errorEmptyField){
+      setReadOnly(true);
+    }
     setFocus(false);
   };
 
@@ -45,7 +58,7 @@ const ItemInfoTextFieldComponent = (props: ItemInfoTextFieldComponentProps) => {
     setReadOnly(!readOnly);
     setVisibility(true);
     setFocus(!focus);
-    test.focus();
+    refForFocusField.focus();
     // @ts-ignore
   };
 
@@ -57,6 +70,7 @@ const ItemInfoTextFieldComponent = (props: ItemInfoTextFieldComponentProps) => {
     <>
     <Box display={'flex'} gap={1} alignItems={'center'}>
       <TextField
+        error={errorEmptyField}
         label={`${props.label}`}
         type={visibility ? 'text' : 'password'}
         // @ts-ignore
@@ -66,7 +80,7 @@ const ItemInfoTextFieldComponent = (props: ItemInfoTextFieldComponentProps) => {
         }}
         InputProps={{ readOnly: readOnly}}
         onBlur={blurHandler}
-        inputRef ={input => test = input}
+        inputRef ={input => refForFocusField = input}
       >
       </TextField>
       <ContentCopyIcon onClick={copyHandler}/>
