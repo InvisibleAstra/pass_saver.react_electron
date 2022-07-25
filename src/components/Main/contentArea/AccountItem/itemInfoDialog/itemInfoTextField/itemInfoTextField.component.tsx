@@ -1,14 +1,20 @@
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { Alert, Box, Snackbar, TextField } from '@mui/material';
+import { Box, Snackbar, TextField } from '@mui/material';
 import React, { ChangeEvent, useState } from 'react';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 interface ItemInfoTextFieldComponentProps {
   label: string;
   value: string;
 }
-
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref,
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 const ItemInfoTextFieldComponent = (props: ItemInfoTextFieldComponentProps) => {
 
   const [visibility, setVisibility] = useState(false);
@@ -68,7 +74,7 @@ const ItemInfoTextFieldComponent = (props: ItemInfoTextFieldComponentProps) => {
       <VisibilityIcon onClick={visibilityHandler}/>
     </Box>
       <Snackbar open={openSnackbar} autoHideDuration={1500} anchorOrigin={{vertical:'top', horizontal:'center'}} onClose={closeSnackbar} >
-        <Alert severity = 'success' sx={{width:'100%'}}>Coped</Alert>
+        <Alert severity = 'success' sx={{width:'150px'}}>Coped</Alert>
       </Snackbar>
     </>
   );
