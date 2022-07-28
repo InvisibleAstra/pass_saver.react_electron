@@ -48,7 +48,7 @@ function App() {
                 <CssBaseline/>
                 <BrowserRouter>
                     <Routes>
-                        {/*<Route path={'/'} element={<AuthComponent/>}/>*/}
+                        <Route path={'/'} element={<AuthComponent/>}/>
                         <Route path={'/main'} element={<MainComponent/>}/>
                     </Routes>
                 </BrowserRouter>

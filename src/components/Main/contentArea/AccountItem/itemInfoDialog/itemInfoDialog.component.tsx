@@ -29,9 +29,10 @@ const ItemInfoDialogComponent = (props: SimpleDialogProps) => {
 
   };
 
+
   let fields = itemInfoKeys.map((key: any) => {
 
-      if (key === 'name') {
+      if (key === 'title') {
         return false;
       }
       // @ts-ignore

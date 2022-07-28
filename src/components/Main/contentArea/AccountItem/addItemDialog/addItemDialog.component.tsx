@@ -25,7 +25,7 @@ const AddItemDialogComponent = (props:AddItemProps) => {
         <DialogTitle>{
           <Box display={'flex'} alignItems={'center'}>
             <Box flexGrow={1}>
-              Add account
+              Field data
             </Box>
             <Box><CloseIcon onClick={closeHandler}/></Box>
           </Box>

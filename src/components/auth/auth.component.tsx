@@ -8,18 +8,21 @@ const AuthComponent = () => {
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [testresponse, setTestResponse] = useState('');
   let nav = useNavigate();
-  let requestConfig: AxiosRequestConfig ={
-    url: 'https://functions.yandexcloud.net/d4eahu6fqabhcbvm394p',
+  let authData = { login, password };
+  let requestConfig: AxiosRequestConfig = {
+    url: 'http://localhost:3000/auth/singIn',
     method: 'post',
-    data: {login, password},
-  }
-  // let a = useCallback(async ()=>{
-  //   let response = await axios(requestConfig);
-  //   setTestResponse(response.data);
-  // },[]);
-  // a();
+    data: authData,
+  };
+
+  let LogInCallback = useCallback(async () => {
+    let response = await axios(requestConfig);
+    if (response.status === 200) {
+      nav('/main');
+    }
+  }, [authData]);
+
 
   let loginOnChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setLogin(event.target.value);
@@ -29,28 +32,28 @@ const AuthComponent = () => {
     setPassword(event.target.value);
   };
 
-  let LogIn = () => {
-    if (login === '1' && password === '1') {
-
+  async function LogIn() {
+    if(authData.login==='1'&&authData.password==='1')
+    {
       nav('/main');
     }
-      };
-
-  let printResponse = () =>{
-    console.log(testresponse);
+    // try {
+    //   await LogInCallback();
+    // } catch (e) {
+    //   console.log(e);
+    // }
   }
 
   return (
-    <div className={'auth'}>
-      <div className={'content'}>
+    <div className={'auth flex center'}>
+      <div className={'auth_content flex size_s gap10 direction_column'}>
         <TextField id="outlined-basic" label="Login" variant="outlined" size="small" onChange={loginOnChange}
                    value={login}/>
         <TextField id="outlined-basic" label="Password" variant="outlined" size="small" onChange={passwordOnChange}
-                   value={password}/>
+                   value={password} type={'password'}/>
         <Button variant="outlined" size="medium" onClick={LogIn}>
           Log in
         </Button>
-        <Button variant = 'outlined' size='medium' onClick={printResponse}>print response</Button>
       </div>
     </div>
   );

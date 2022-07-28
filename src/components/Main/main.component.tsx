@@ -1,7 +1,5 @@
-import { Snackbar } from '@mui/material';
 import React from 'react';
 import BarComponent from './appBar/bar.component';
-import AccountItemComponent from './contentArea/AccountItem/accountItem.component';
 import ContentAreaComponent from './contentArea/contentArea.component';
 import HeaderComponent from './Header/header.component';
 import './main.component.scss';

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './accountItem.component.scss';
 import ItemInfoDialogComponent from './itemInfoDialog/itemInfoDialog.component';
 
 const AccountItemComponent = (props:any) => {
+  console.log(props.info.title);
   let [openDialog, setOpenDialog] = React.useState(false);
   const openInfo = () => setOpenDialog(true);
   const closeInfo = () => {
@@ -11,9 +12,9 @@ const AccountItemComponent = (props:any) => {
 //setTimeout(()=>{setOpenDialog(false)},5000)
   return (
     <div>
-      <div className="item" onClick={openInfo}>
-        <img src={'https://i.pinimg.com/originals/28/2e/ac/282eac5d42125185dc54f41050196a53.png'} alt={''}/>
-        {props.info.title}
+      <div className="item size_ss flex direction_column align_center" onClick={openInfo}>
+        <img src={props.info.src} alt={''}/>
+        <div>{props.info.title}</div>
         <ItemInfoDialogComponent open={openDialog} closeInfo={closeInfo} info={props.info}/>
       </div>
     </div>
