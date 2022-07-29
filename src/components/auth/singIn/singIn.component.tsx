@@ -4,8 +4,12 @@ import './singIn.component.scss';
 import { useNavigate } from 'react-router-dom';
 import { AxiosRequestConfig } from 'axios';
 import SingUpComponent from '../singUp/singUp.component';
+import { ModeTypes } from '../auth.component';
 
-const SingInComponent = () => {
+interface SingIn{
+  changeMode:(mode: ModeTypes)=>void;
+}
+const SingInComponent = (props: SingIn) => {
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +36,7 @@ const SingInComponent = () => {
   };
 
   let openSingUpDialogHandler = () => {
-    setOpenSingUpDialog(true);
+    props.changeMode('singUp');
   }
 
   let LogIn = () => {
@@ -48,8 +52,8 @@ const SingInComponent = () => {
 
   return (
     <>
-      <div className={'auth'}>
-        <div className={'content'}>
+      <div className={'singIn flex center'}>
+        <div className={'singIn_content flex  gap_10px direction_column'}>
           <TextField id="outlined-basic" label="Login" variant="outlined" size="small" onChange={loginOnChange}
                      value={login}/>
           <TextField id="outlined-basic" label="Password" variant="outlined" size="small" onChange={passwordOnChange}
