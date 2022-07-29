@@ -1,11 +1,19 @@
 .auth {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-.auth_content {
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 30px;
-
+  width: 250px;
+  height: 200px;
   border-radius: 5px;
   border: 1px grey solid;
   margin-top: 200px;
@@ -13,22 +21,4 @@
     margin-left: 30px;
     margin-right: 30px;
   }
-}
-.flex{
-  display: flex;
-}
-
-.size_s{
-  width: 250px;
-  height: 200px;
-}
-
-.center{
-  justify-content: center;
-}
-.gap10{
-  gap:10px
-}
-.direction_column{
-  flex-direction: column;
 }

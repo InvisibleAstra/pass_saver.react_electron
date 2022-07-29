@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthComponent from './components/auth/auth.component';
+import SingInComponent from './components/auth/singIn/singIn.component';
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import MainComponent from './components/Main/main.component';
 
