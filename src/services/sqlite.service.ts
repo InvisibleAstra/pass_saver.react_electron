@@ -6,6 +6,10 @@ interface ISqlite {
     createTable: () => void;
     saveCredo: (credo: string) => void;
 }
+interface UserData {
+    login: string;
+    password:string;
+}
 
 export class SqliteService implements ISqlite {
     static db: Database;
@@ -33,13 +37,29 @@ export class SqliteService implements ISqlite {
         SqliteService.db.run(createLocalBindTableQuery, (error)=>{
             console.log('Error in create localBind: ', error)
         })
+
+        let createUsersTableQuery = 'CREATE TABLE IF NOT EXIST users(' +
+          'userId PRIMARY KEY AUTOINCREMENT,' +
+          'login TEXT NOT NULL'+
+          'password TEXT NOT NULL'+
+          ')'
+        SqliteService.db.run(createUsersTableQuery, (error)=>{
+            console.log('Error in create users ', error);
+        })
     }
 
 
-    async saveCredo(credo: string) {
+    async saveCredo(credo: string):Promise<void> {
         let query = `INSERT INTO credo(credoObj) VALUES('"${credo}"')`;
         SqliteService.db.run(query, (error) => {
             console.log('Error in saveCredo: ',error)
+        })
+    }
+
+    async saveUser(userData:UserData):Promise<void> {
+        let query = `INSERT INTO users(login,password) VALUES('"${userData.login, userData.password}"')`;
+        SqliteService.db.run(query, (error) => {
+            console.log('Error in saveUser ', error);
         })
     }
 
