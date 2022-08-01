@@ -12,11 +12,13 @@ const createWindow = () => {
     height: 600, // height of window
     webPreferences: {
       // The preload file where we will perform our app communication
+      nodeIntegration: true,
+      contextIsolation: true, // Isolating context so our app is not exposed to random javascript executions making it safer.
+
       preload: isDev
         ? path.join(app.getAppPath(), '/public/preload.js') // Loading it from the public folder for dev
         : path.join(app.getAppPath(), './build/preload.js'), // Loading it from the build folder for production
       worldSafeExecuteJavaScript: true, // If you're using Electron 12+, this should be enabled by default and does not need to be added here.
-      contextIsolation: true, // Isolating context so our app is not exposed to random javascript executions making it safer.
     },
   });
   mainWindow.webContents.openDevTools();

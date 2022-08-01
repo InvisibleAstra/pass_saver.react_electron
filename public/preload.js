@@ -10,6 +10,7 @@ contextBridge.exposeInMainWorld('api', {
   //   callback(data)
   // }),
   saveCredo: (args) =>ipcRenderer.invoke('save-credo', args),
-  createTable: (args) =>ipcRenderer.invoke('create-table', args),
-  connectToDB:()=>{ return ipcRenderer.invoke('connect')}
+  init: (args) =>ipcRenderer.invoke('init', args),
+  saveUser: (args) =>ipcRenderer.invoke('add-new-user',args),
+
 });

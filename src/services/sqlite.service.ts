@@ -3,7 +3,7 @@ import {Database} from "sqlite3";
 const sqlite3 = require('sqlite3').verbose();
 
 interface ISqlite {
-    createTable: () => void;
+    init: () => void;
     saveCredo: (credo: string) => void;
 }
 interface UserData {
@@ -21,9 +21,9 @@ export class SqliteService implements ISqlite {
     }
 
 
-    async createTable() {
+    async init() {
         let createCredoTableQuery = 'CREATE TABLE IF NOT EXISTS credo(' +
-            'credoID PRIMARY KEY AUTOINCREMENT,' +
+            'credoID INT PRIMARY KEY AUTOINCREMENT,' +
             'credoObj TEXT NOT NULL' +
             ')'
         SqliteService.db.run(createCredoTableQuery, (error) => {
@@ -31,16 +31,16 @@ export class SqliteService implements ISqlite {
         })
 
         let createLocalBindTableQuery = 'CREATE TABLE IF NOT EXISTS localBind(' +
-            'userID NOT NULL,' +
+            'userID INT NOT NULL,' +
             'credoID NOT NULL' +
             ')'
         SqliteService.db.run(createLocalBindTableQuery, (error)=>{
             console.log('Error in create localBind: ', error)
         })
 
-        let createUsersTableQuery = 'CREATE TABLE IF NOT EXIST users(' +
-          'userId PRIMARY KEY AUTOINCREMENT,' +
-          'login TEXT NOT NULL'+
+        let createUsersTableQuery = 'CREATE TABLE IF NOT EXISTS users(' +
+          'userID INTEGER PRIMARY KEY AUTOINCREMENT,' +
+          'login TEXT NOT NULL,'+
           'password TEXT NOT NULL'+
           ')'
         SqliteService.db.run(createUsersTableQuery, (error)=>{
@@ -57,7 +57,7 @@ export class SqliteService implements ISqlite {
     }
 
     async saveUser(userData:UserData):Promise<void> {
-        let query = `INSERT INTO users(login,password) VALUES('"${userData.login, userData.password}"')`;
+        let query = `INSERT INTO users(login,password) VALUES('"${userData.login}"','"${userData.password}"')`;
         SqliteService.db.run(query, (error) => {
             console.log('Error in saveUser ', error);
         })

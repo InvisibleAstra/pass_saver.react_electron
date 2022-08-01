@@ -1,34 +1,9 @@
 .auth {
-
-}
-.auth_content {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 30px;
-
-  border-radius: 5px;
-  border: 1px grey solid;
   margin-top: 200px;
-  button{
-    margin-left: 30px;
-    margin-right: 30px;
+  .auth_content {
+    border-radius: 5px;
+    border: 1px grey solid;
+    width: 200px;
+    height: 200px;
   }
-}
-.flex{
-  display: flex;
-}
-
-.size_s{
-  width: 250px;
-  height: 200px;
-}
-
-.center{
-  justify-content: center;
-}
-.gap10{
-  gap:10px
-}
-.direction_column{
-  flex-direction: column;
 }
